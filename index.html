@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Philip Moore — Apps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fdf8f5;
+      --card: #ffffff;
+      --accent: #d97b5f;
+      --accent-soft: #e69f82;
+      --accent-wash: #f4e4dc;
+      --fg: #4a3b32;
+      --fg-secondary: #6b5a50;
+      --fg-muted: #9c8c84;
+      --border: #e8dcd6;
+    }
+
+    body {
+      font-family: 'Nunito', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+    }
+
+    /* ── Greeting ── */
+    .greeting {
+      margin-bottom: 3rem;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    .greeting h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .greeting h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .greeting p {
+      font-size: 1.05rem;
+      color: var(--fg-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Apps ── */
+    .apps-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .apps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .app-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(74, 59, 50, 0.08);
+    }
+
+    .app-card:active {
+      transform: translateY(0);
+    }
+
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 13px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(74, 59, 50, 0.1);
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .app-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .app-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--fg);
+    }
+
+    .app-desc {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-top: 0.1rem;
+    }
+
+    .app-arrow {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent-wash);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .app-card:hover .app-arrow {
+      background: var(--accent-soft);
+    }
+
+    .app-arrow svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent);
+      transition: color 0.15s;
+    }
+
+    .app-card:hover .app-arrow svg {
+      color: #fff;
+    }
+
+    /* ── Coming soon placeholder ── */
+    .more-soon {
+      text-align: center;
+      padding: 1.25rem;
+      color: var(--fg-muted);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 4rem;
+      text-align: center;
+      color: var(--fg-muted);
+      font-size: 0.8rem;
+    }
+
+    footer a {
+      color: var(--fg-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="greeting">
+      <div class="dot"></div>
+      <h1>Hi, I'm Philip.<br/>I make <em>apps for fun.</em></h1>
+      <p>A few small ideas I had, turned into apps to share. I hope you enjoy! Here's what I've been working on.</p>
+    </div>
+
+    <p class="apps-label">My Apps</p>
+    <div class="apps">
+      <a href="/caturday" class="app-card">
+        <div class="app-icon"><img src="/caturday-icon.png" alt="Caturday" /></div>
+        <div class="app-info">
+          <div class="app-name">Caturday</div>
+          <div class="app-desc">A year of cats, one day at a time.</div>
+        </div>
+        <div class="app-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </a>
+    </div>
+
+    <p class="more-soon">More on the way...</p>
+
+    <footer>
+      <p>&copy; 2026 Philip Moore</p>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caturday — A year of cats</title>
+  <meta name="description" content="Collect a new hand-illustrated cat every day of the year. 365 unique ink-wash cats to discover." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fdf8f5;
+      --bg-warm: #f9f0ea;
+      --card: #ffffff;
+      --accent: #d97b5f;
+      --accent-soft: #e69f82;
+      --accent-wash: #f4e4dc;
+      --fg: #4a3b32;
+      --fg-secondary: #6b5a50;
+      --fg-muted: #9c8c84;
+      --border: #e8dcd6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    /* ── Nav ── */
+    nav {
+      padding: 1.25rem 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .nav-back {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-back:hover { color: var(--fg); }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 4rem 2rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-text { max-width: 420px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge img {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+    }
+
+    .hero-badge span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.75rem, 5.5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--fg);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--fg-secondary);
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--fg);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.85rem 1.75rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-appstore:hover { background: #3a2e26; }
+    .btn-appstore:active { transform: scale(0.98); }
+
+    .btn-appstore svg { opacity: 0.9; }
+
+    .hero-art {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.5rem;
+      width: 300px;
+      box-shadow: 0 20px 60px rgba(74, 59, 50, 0.08);
+    }
+
+    .hero-card img {
+      width: 100%;
+      border-radius: 16px;
+    }
+
+    .hero-card-label {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .hero-card-label strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--fg);
+    }
+
+    .hero-card-label span {
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+    }
+
+    .hero-card-day {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent-soft);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Divider ── */
+    .section-divider {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem 0;
+    }
+
+    .divider-line {
+      border: none;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── How it works ── */
+    .how-it-works {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 3rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .step {
+      position: relative;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--accent-wash);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      line-height: 1.55;
+    }
+
+    /* ── Gallery ── */
+    .gallery {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem;
+      overflow: hidden;
+    }
+
+    .gallery-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(74, 59, 50, 0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .gallery-caption {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: var(--fg-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── Features ── */
+    .features {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .feature {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-wash);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .feature p {
+      font-size: 0.9rem;
+      color: var(--fg-muted);
+      line-height: 1.55;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center;
+      padding: 4rem 2rem 5rem;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .cta h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      color: var(--fg-muted);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    /* ── Support ── */
+    .support {
+      background: var(--bg-warm);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .support p {
+      color: var(--fg-muted);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .support a {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .support a:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--fg-muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 2rem;
+      }
+      .hero-text { max-width: 100%; margin: 0 auto; }
+      .hero-card { width: 260px; }
+      .steps { grid-template-columns: 1fr; gap: 1.5rem; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-back">&larr; philipmoore.app</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <img src="/caturday-icon.png" alt="Caturday" />
+        <span>Caturday</span>
+      </div>
+      <h1>A year of cats, <em>one day at a time.</em></h1>
+      <p class="hero-desc">
+        Every day reveals a new hand-illustrated cat with its own name and story.
+        365 days. 365 cats. How many will you collect?
+      </p>
+      <a href="https://apps.apple.com/app/caturday/id6744868822" class="btn-appstore">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+    <div class="hero-art">
+      <div class="hero-card">
+        <span class="hero-card-day">Day 1</span>
+        <img src="cat_001.png" alt="Cinnamon the Dreamer — a cat curled up sleeping" />
+        <div class="hero-card-label">
+          <strong>"Cinnamon the Dreamer"</strong>
+          <span>January 1</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <div class="section-divider"><hr class="divider-line" /></div>
+
+  <section class="how-it-works">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">Your daily moment of calm.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Open each day</h3>
+        <p>A new cat waits for you every day of the year, like an advent calendar that never ends.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Discover the story</h3>
+        <p>Every cat has a unique name and personality. Some are playful, some are sleepy, all are charming.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Build your collection</h3>
+        <p>Watch your year fill up day by day. Save your favorites and share the ones that make you smile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery">
+    <div class="gallery-inner">
+      <div class="gallery-header">
+        <p class="section-label">365 hand-drawn cats</p>
+        <h2 class="section-title">Each one a little ink-wash original.</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="cat_001.png" alt="A curled up sleeping cat" />
+        </div>
+        <div class="gallery-item">
+          <img src="cat_003.png" alt="A cat stretching on a blanket" />
+        </div>
+        <div class="gallery-item">
+          <img src="cat_006.png" alt="A cat watching rain through a window" />
+        </div>
+      </div>
+      <p class="gallery-caption">Just 3 of the 365 cats waiting to be discovered.</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <p class="section-label">What you get</p>
+    <h2 class="section-title">Simple by design.</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Daily reveal</h3>
+        <p>One new cat each day. No rush, no grind — just a small, quiet ritual to look forward to.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Favorites</h3>
+        <p>Save the cats that steal your heart. Revisit them whenever you need a little warmth.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Year at a glance</h3>
+        <p>A beautiful grid that tracks your progress across the full year. Every day is a little milestone.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        </div>
+        <h3>Share</h3>
+        <p>Found a cat that looks like someone you know? Share it. It'll make their day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Start collecting today.</h2>
+    <p>Free to download. A new cat is already waiting for you.</p>
+    <a href="https://apps.apple.com/app/caturday/id6744868822" class="btn-appstore">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+  </section>
+
+  <!-- Support -->
+  <section class="support">
+    <p>Questions or feedback?</p>
+    <a href="mailto:support@philipmoore.app">support@philipmoore.app</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Philip Moore &nbsp;&middot;&nbsp; <a href="/">All Apps</a></p>
+  </footer>
+
+</body>
+</html>
